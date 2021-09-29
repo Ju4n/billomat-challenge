@@ -1,0 +1,43 @@
+FROM php:8-apache
+
+# Set working directory
+WORKDIR /var/www/html/challenge
+
+### MODS
+RUN a2enmod rewrite && a2enmod remoteip && a2enmod ssl
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    apt-transport-https \
+    ca-certificates \
+    libssl-dev \
+    ssl-cert \
+    locales \
+    zip \
+    vim \
+    unzip \
+    git \
+    wget \
+    libcurl3-dev \
+    libzip-dev \
+    zlib1g-dev \
+    libpng-dev \
+    curl \
+    acl \
+    libxml2-dev \
+    procps
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+### PHP Extensions
+RUN docker-php-ext-install curl mysqli pdo pdo_mysql zip tokenizer xml pcntl gd
+### PECL PHP Extensions
+
+RUN pecl install xdebug && \
+    docker-php-ext-enable xdebug
+
+### Add parameters to php.ini
+RUN echo "xdebug.var_display_max_depth = 4 \n xdebug.var_display_max_children = 512 \n xdebug.var_display_max_data = -1 \n xdebug.max_nesting_level= -1" >> /usr/local/etc/php/php.ini
+RUN echo "max_input_vars = 500000" >> /usr/local/etc/php/php.ini
+RUN echo "post_max_size = 200M" >> /usr/local/etc/php/php.ini

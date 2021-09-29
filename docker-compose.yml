@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  web:
+    environment:
+      - COMPOSER_MEMORY_LIMIT=-1
+    container_name: challenge-web
+    build:
+      context: ./
+      dockerfile: ./docker/dockerfile
+    ports:
+      - 85:85
+    volumes:
+      - ./docker/apache/sites-enabled/challenge.conf:/etc/apache2/sites-enabled/challenge.conf
+      - ./docker/apache/ports.conf:/etc/apache2/ports.conf
+      - .:/var/www/html/challenge
+    working_dir: /var/www/html/challenge
+    tty: true
+    networks:
+      - backend
+
+  # MySQL Service
+  db:
+    image: mysql:8
+    container_name: challenge-db
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "127.0.0.1:3308:3308"
+    environment:
+      MYSQL_DATABASE: challenge
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/db-init:/docker-entrypoint-initdb.d
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
