@@ -10,6 +10,7 @@ This applicacion can list, create, update and delete profiles, it also can calcu
 
 ## Initialize Project
 To initialize proyect run ```make initialize``` in order to build the docker, run composer etc. Then run ```make migrate-fresh``` to migrate tables.
+
 Apache will be running in __port 85__ and Mysql in __port 3308__ to avoid conflicts with other projects. 
 
 ##  Commands
