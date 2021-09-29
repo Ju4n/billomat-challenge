@@ -9,13 +9,16 @@ This applicacion can list, create, update and delete profiles, it also can calcu
 -  Make 
 
 ## Initialize Project
-To initialize proyect run ```make initialize``` in order to build the docker, run composer etc.  
+To initialize proyect run ```make initialize``` in order to build the docker, run composer etc. Then run ```make migrate-fresh``` to migrate tables.
 Apache will be running in __port 85__ and Mysql in __port 3308__ to avoid conflicts with other projects. 
 
 ##  Commands
  
 ```make initialize``` 
-Initializes the project, runs docker compose build, runs composer install, runs database migrations, and give permissions to */storage* directory
+Initializes the project, runs docker compose build, runs composer install, runs database migrations, and give permissions to */storage* directoryA
+
+```migrate-fresh```
+Runs database migrations
 
 ```make up ```
 run docker compose and start docker 
