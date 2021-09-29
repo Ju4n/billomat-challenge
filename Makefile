@@ -7,11 +7,10 @@ initialize:
 	docker exec -it challenge-web setfacl -R -m u:www-data:rwX -m u:$(whoami):rwX /var/www/html/challenge/storage
 
 migrate-fresh:
-	docker exec -it challenge-web php artisan migrate:fresh 
+	docker exec -it challenge-web php artisan migrate:fresh
 
 up:
 	docker-compose up -d
-	make cache-clear
 
 down:
 	docker-compose down
