@@ -15,7 +15,7 @@ Apache will be running in __port 85__ and Mysql in __port 3308__ to avoid confli
 ##  Commands
  
 ```make initialize``` 
-Initializes the project, runs docker compose build, runs composer install, runs database migrations, and give permissions to */storage* directoryA
+Initializes the project, runs docker compose build, runs composer install, and give permissions to */storage* directoryA
 
 ```migrate-fresh```
 Runs database migrations
