@@ -14,8 +14,9 @@
 |
 */
 
-$router->get('/profiles', 'ProfileController@getAllProfiles');
-$router->get('/profiles/{profileId}', 'ProfileController@getOneProfile');
+$router->get('/profiles', 'ProfileController@getProfiles');
+$router->get('/profiles/{profileId}', 'ProfileController@getProfile');
+$router->get('/profiles/average/age', 'ProfileController@getProfilesAverageAge');
 $router->post('/profiles', 'ProfileController@createProfile');
 $router->put('/profiles/{profileId}', 'ProfileController@updateProfile');
 $router->delete('/profiles/{profileId}', 'ProfileController@deleteProfile');

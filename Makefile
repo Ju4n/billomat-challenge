@@ -1,4 +1,4 @@
-.PHONY: up down web initialize
+.PHONY: up down web initialize run-tests
 
 initialize:
 	docker-compose up --build -d
@@ -16,6 +16,9 @@ web:
 
 down:
 	docker-compose down
+
+run-tests:
+	docker exec -it challenge-web vendor/bin/phpunit tests/ProfileTest.php --testdox
 
 cache-clear:
 	docker exec -it challenge-web php artisan cache:clear

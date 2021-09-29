@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Mockery\Generator\StringManipulationGenerator;
@@ -9,6 +10,7 @@ use Mockery\Generator\StringManipulationGenerator;
 class Profile extends Model
 {
     use SoftDeletes;
+    use HasFactory;
 
     public $timestamps = true;
     protected $table = 'profile';
@@ -21,7 +23,7 @@ class Profile extends Model
             'id' => 'int',
             'name' => 'string',
             'age' => 'int',
-            'bio' => 'string',
+            'biography' => 'string',
             'image_url' => 'string',
             'created_at' => 'datetime:Y-m-d H:i:s',
             'updated_at' => 'datetime:Y-m-d H:i:s',

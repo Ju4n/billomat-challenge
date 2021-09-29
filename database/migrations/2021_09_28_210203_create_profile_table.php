@@ -17,7 +17,7 @@ class CreateProfileTable extends Migration
             $table->id();
             $table->string('name')->nullable(false);
             $table->unsignedInteger('age')->nullable(false);
-            $table->text('bio')->nullable(true)->default(null);
+            $table->text('biography')->nullable(true)->default(null);
             $table->mediumText('image_url')->nullable(true)->default(null);
             $table->timestamps();
             $table->softDeletes();
